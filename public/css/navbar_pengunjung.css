@@ -1,0 +1,155 @@
+/* 1. Reset & Base Layout */
+body {
+    background-color: rgb(245, 244, 244);
+    color: #334155;
+    line-height: 1.5;
+}
+
+/* 2. Container Styling */
+.container-custom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* 3. Ticket Layout (Frame 17) */
+.ticket-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.ticket-card {
+    background: #ffffff;
+    border-radius: 8px; /* Fallback jika clip-path tidak didukung */
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    position: relative;
+    /* Membuat potongan setengah lingkaran di samping sesuai Figma */
+    clip-path: polygon(
+        0% 0%, 100% 0%, 
+        100% 35%, 96% 40%, 96% 60%, 100% 65%, 
+        100% 100%, 0% 100%, 
+        0% 65%, 4% 60%, 4% 40%, 0% 35%
+    );
+}
+
+/* Garis putus-putus di bagian bawah tiket */
+.ticket-footer {
+    border-top: 2px dashed #e2e8f0;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    text-align: center;
+}
+
+/* 4. Status Loket Layout */
+.loket-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1rem;
+}
+
+.loket-card {
+    background: #ffffff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.loket-card:hover {
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+/* Lingkaran Status (Buka/Tutup) */
+.status-indicator {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-right: 1.5rem;
+    border: 5px solid #f1f5f9; /* Border abu-abu luar */
+}
+
+.bg-buka {
+    background-color: #86efac; /* Hijau */
+    color: #14532d;
+}
+
+.bg-tutup {
+    background-color: #fca5a5; /* Merah */
+    color: #7f1d1d;
+}
+
+/* 5. Responsive Adjustment */
+@media (max-width: 640px) {
+    .ticket-grid, .loket-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .ticket-card {
+        clip-path: none; /* Matikan efek tiket di layar sangat kecil agar rapi */
+        border-radius: 15px;
+    }
+}
+
+/* public/css/navbar_pengunjung.css */
+
+/* Perkecil Container Utama SweetAlert */
+.swal2-popup {
+    width: 320px !important; /* Lebar kotak */
+    padding: 1rem !important;
+    border-radius: 15px !important;
+}
+
+/* Perkecil Ikon */
+.swal2-icon {
+    transform: scale(0.65) !important;
+    transform-origin: center !important;
+    margin: -10px auto -15px auto !important;
+}
+
+/* Perkecil Judul */
+.swal2-title {
+    font-size: 1.1rem !important;
+    padding-top: 0 !important;
+}
+
+/* Perkecil Teks Pesan */
+.swal2-html-container {
+    font-size: 0.85rem !important;
+    margin: 0.5rem 0 !important;
+}
+
+/* Perkecil Tombol */
+.swal2-actions {
+    margin-top: 1rem !important;
+}
+
+.swal2-styled {
+    padding: 7px 20px !important;
+    font-size: 0.8rem !important;
+    border-radius: 8px !important;
+}
+/* Styling Logo agar konsisten */
+.flex.items-center.gap-2 img {
+    height: 40px;          /* Atur tinggi maksimal sesuai selera */
+    width: auto;           /* Lebar otomatis agar tidak distorsi */
+    object-fit: contain;   /* Memastikan gambar tetap dalam bingkainya */
+    border-radius: 4px;    /* Sedikit lengkungan jika logonya kotak */
+}
+
+/* Tambahan: Pastikan teks disamping logo tidak turun ke bawah */
+.flex.items-center.gap-2 {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;   /* Teks tetap satu baris dengan logo */
+}

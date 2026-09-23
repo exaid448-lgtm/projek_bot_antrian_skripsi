@@ -1,0 +1,26 @@
+* {
+    padding: 100%;
+    margin: auto;
+}
+
+body {
+    justify-content: center;
+    align-items: center;
+    padding-top: 200px;
+    padding-bottom: 100px;
+}
+
+box-registre {
+    align-items: center;
+    padding-left: 100px;
+    color: aqua;
+    height: 90px;
+    width: 90px;
+    background: blue;
+}
+
+box-registre-right {
+    height: 90px;
+    width: 90px;
+    background: green;
+}

@@ -1,0 +1,422 @@
+/* ==========================================================================
+   STYLE HALAMAN DASHBOARD SKM DENGAN POPUP MODAL FORM
+   ========================================================================== */
+
+.skm-main-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    color: #333333;
+
+    /* --- PERBAIKAN UTAMA: Mendorong konten agar keluar dari belakang sidebar --- */
+    margin-left: 250px;
+    /* Menyesuaikan lebar sidebar (250px) dari navbar_admin.css */
+    width: calc(100% - 250px);
+    /* Membatasi lebar konten agar tidak melebihi layar */
+    padding: 25px 30px;
+    /* Memberikan ruang udara/padding yang rapi di area konten */
+
+    box-sizing: border-box;
+}
+
+.skm-panel-report {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+/* --- KOMPONEN KARTU (CARD) --- */
+.skm-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    box-sizing: border-box;
+}
+
+.skm-card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.15rem;
+    color: #1a202c;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.skm-hr {
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+    margin: 0 0 20px 0;
+}
+
+/* --- FILTER SEBARIS --- */
+.skm-filter-box {
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    padding: 20px;
+}
+
+.skm-filter-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+}
+
+.skm-filter-inputs {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.skm-form-group-inline {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 140px;
+}
+
+.skm-form-group-inline label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #4a5568;
+}
+
+.skm-form-group-inline input,
+.skm-form-group-inline select {
+    padding: 9px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    background-color: #ffffff;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.skm-filter-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* --- TOMBOL-TOMBOL (BUTTONS) --- */
+.skm-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.1s;
+    box-sizing: border-box;
+}
+
+.skm-btn:active {
+    transform: scale(0.98);
+}
+
+.skm-btn-primary {
+    background-color: #3182ce;
+    color: #ffffff;
+}
+
+.skm-btn-primary:hover {
+    background-color: #2b6cb0;
+}
+
+.skm-btn-secondary {
+    background-color: #4a5568;
+    color: #ffffff;
+}
+
+.skm-btn-secondary:hover {
+    background-color: #2d3748;
+}
+
+.skm-btn-success {
+    background-color: #38a169;
+    color: #ffffff;
+}
+
+.skm-btn-success:hover {
+    background-color: #2f855a;
+}
+
+/* --- SUMMARY KARTU INFORMASI UTAMANYA --- */
+.skm-summary-container {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.skm-stat-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.skm-stat-title {
+    font-size: 0.8rem;
+    color: #718096;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.skm-stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin: 6px 0;
+}
+
+.skm-stat-desc {
+    font-size: 0.85rem;
+    color: #718096;
+}
+
+.skm-chart-container {
+    position: relative;
+    height: 280px;
+    width: 100%;
+}
+
+/* --- STRUKTUR POPUP MODAL DIALOG --- */
+.skm-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.skm-modal-overlay.aktif {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.skm-modal-content {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 550px;
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-30px);
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+}
+
+.skm-modal-overlay.aktif .skm-modal-content {
+    transform: translateY(0);
+}
+
+.skm-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.skm-modal-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #1a202c;
+}
+
+.skm-modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #a0aec0;
+    line-height: 1;
+}
+
+.skm-modal-close-btn:hover {
+    color: #4a5568;
+}
+
+/* --- FORM INPUT DI DALAM MODAL --- */
+.skm-form-group {
+    margin-bottom: 16px;
+}
+
+.skm-form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #4a5568;
+}
+
+.skm-form-group input,
+.skm-form-group select,
+.skm-form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #2d3748;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.skm-form-group textarea {
+    resize: vertical;
+    font-family: inherit;
+}
+
+.skm-form-group input:focus,
+.skm-form-group select:focus,
+.skm-form-group textarea:focus {
+    outline: none;
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
+}
+
+.skm-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* --- TABEL DATA --- */
+.skm-table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.skm-table-content {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.skm-table-content th,
+.skm-table-content td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #e2e8f0;
+    box-sizing: border-box;
+}
+
+.skm-table-content th {
+    background-color: #f7fafc;
+    color: #4a5568;
+    font-weight: 700;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.skm-table-content tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+/* --- BADGE MUTU --- */
+.skm-badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.skm-badge-success {
+    background-color: #c6f6d5;
+    color: #22543d;
+}
+
+.skm-badge-warning {
+    background-color: #feebc8;
+    color: #744210;
+}
+
+/* --- RESPONSIVE UNTUK LAYAR MOBILE --- */
+@media (max-width: 768px) {
+    .skm-main-wrapper {
+        margin-left: 0;
+        width: 100%;
+        padding: 15px;
+    }
+
+    .skm-summary-container {
+        flex-direction: column;
+    }
+
+    .skm-filter-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .skm-filter-buttons {
+        justify-content: flex-start;
+    }
+
+    .skm-modal-content {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+.skm-main-wrapper {
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+.skm-filter-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Mencegah filter terpotong di layar tanggung */
+.skm-filter-inputs {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.skm-badge-success {
+    background-color: #2ec4b6;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.skm-badge-danger {
+    background-color: #e71d36;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}

@@ -1,0 +1,357 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: sans-serif;
+}
+
+/* Video background */
+.video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.video-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+/* Container tetap flex */
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Lebar login box ramping */
+.login-box {
+  width: 25%;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 20px;
+  color: #000;
+  animation: boxFadeIn 0.8s ease forwards;
+}
+
+@keyframes boxFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Blank side sisanya agar dorong ke kanan */
+.blank-side {
+  width: 82%;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.input-group {
+  position: relative;
+  margin: 30px 0;
+}
+
+.input-group input {
+  width: 85%;
+  /* Sesuai dengan settingan ikon mata */
+  padding: 10px 30px 10px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #000;
+  color: #000;
+  font-size: 16px;
+  outline: none;
+}
+
+.input-group label {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  color: #000;
+  pointer-events: none;
+  transition: 0.3s ease;
+  font-size: 16px;
+}
+
+.input-group input:focus+label,
+.input-group input:valid+label,
+.input-group input:not(:placeholder-shown)+label {
+  top: -14px;
+  font-size: 12px;
+  color: #ff7c7c;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.login-box button {
+  flex: 1;
+  padding: 10px;
+  background-color: #ffb6b6;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.login-box button:hover {
+  background-color: #ff7c7c;
+}
+
+.btn-register {
+  background-color: #9aafcf !important;
+  color: white !important;
+}
+
+.btn-register:hover {
+  background-color: #72aac6 !important;
+}
+
+#togglePassword {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  cursor: pointer;
+  color: #000;
+  transition: 0.3s;
+}
+
+#togglePassword:hover {
+  color: #ff7c7c;
+}
+
+.login-header {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+h3 {
+  position: relative;
+  font-size: 50px;
+  text-transform: uppercase;
+  color: #222;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+  z-index: 1;
+}
+
+h3:before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: blur(2px);
+}
+
+h3:after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: blur(15px);
+  opacity: 0.8;
+}
+
+.login-header p {
+  font-size: 14px;
+  color: #000;
+  margin: 5px 0 10px 0;
+  font-weight: bold;
+}
+
+.register-link {
+  padding-top: 10px;
+  margin-top: 15px;
+  text-align: left;
+  font-size: 13px;
+  color: #000;
+}
+
+.register-link a {
+  color: #516ce6;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.page-transition.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* =========================================
+   MODAL RISET AKUN (POSISI PRESISI)
+   ========================================= */
+
+.modal {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px) brightness(90%);
+  -webkit-backdrop-filter: blur(8px) brightness(90%);
+  
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 24px; 
+    width: 90%;
+    max-width: 420px;
+    position: absolute;
+    top: 50%;
+    left: 65%; 
+    
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3), 
+                0 0 0 1px rgba(255, 255, 255, 0.6) inset; 
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    
+    transform: translate(-50%, -45%) scale(0.95);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+}
+
+.modal.show .modal-content {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.close-btn {
+  position: absolute;
+  right: 24px;
+  top: 16px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #ff4757;
+  transform: scale(1.1);
+}
+
+.modal-content h3 {
+  font-size: 26px;
+  color: #2f3542;
+  text-align: center;
+  margin-bottom: 12px;
+  font-weight: 700;
+  text-transform: none;
+  -webkit-text-fill-color: initial;
+  background: none;
+}
+
+.modal-content h3:before,
+.modal-content h3:after {
+  display: none;
+}
+
+.modal-content p {
+  text-align: center;
+  color: #57606f;
+  margin-bottom: 25px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Tombol di dalam modal (Kirim Link Riset) */
+.modal-content button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 14px;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+  border: none;
+  border-radius: 12px;
+  color: #2f3542;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 154, 158, 0.4);
+}
+
+.modal-content button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 154, 158, 0.6);
+  background: linear-gradient(135deg, #ff8a8e 0%, #feafdf 100%);
+}
+
+/* Responsif: Jika di HP, kembalikan ke tengah layar */
+@media (max-width: 768px) {
+  .modal-content {
+    left: 50%;
+    width: 85%;
+    transform: translate(-50%, -45%) scale(0.95);
+  }
+  
+  .modal.show .modal-content {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

@@ -1,0 +1,309 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #1e1e1e;
+}
+
+.main-content {
+    margin-left: 260px;
+    padding: 30px;
+    background: #dedede;
+    min-height: 100vh;
+}
+
+/* JUDUL */
+.page-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+/* GRID */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    align-items: start;
+}
+
+/* CARD */
+.card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.card-table {
+    min-height: 400px;
+}
+
+.card-inner-title {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* TABLE */
+.table-basic {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-basic th {
+    text-align: left;
+    font-size: 12px;
+    color: #8c8c8c;
+    padding: 12px;
+}
+
+/* --- PERBAIKAN BAGIAN FILTER (data_absensi.css) --- */
+
+.card-filter {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.filter-title {
+    font-size: 18px;
+    color: #2b3674;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.filter-group {
+    margin-bottom: 20px;
+}
+
+.label-text {
+    font-size: 14px;
+    color: #2b3674;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* Search Input */
+.search-input-wrapper {
+    display: flex;
+    background: #f4f7fe;
+    border-radius: 15px;
+    padding: 5px;
+    align-items: center;
+}
+
+.search-input-wrapper input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 10px 15px;
+    outline: none;
+    font-size: 14px;
+    color: #2b3674;
+}
+
+.btn-search {
+    background: #4318ff;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-search:hover {
+    background: #3311cc;
+}
+
+/* Select/Dropdown Style */
+.select-input-wrapper {
+    background: #f4f7fe;
+    border-radius: 15px;
+    padding: 12px 15px;
+}
+
+.select-input-wrapper select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #2b3674;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Date Input */
+.date-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #f4f7fe;
+    border-radius: 15px;
+    padding: 12px 15px;
+}
+
+.date-input-wrapper input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #2b3674;
+    cursor: pointer;
+}
+
+.calendar-icon-svg {
+    width: 20px;
+    height: 20px;
+    fill: #4318ff;
+}
+
+/* Tombol Utama & Reset */
+.btn-search-full {
+    width: 100%;
+    background: #4318ff;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn-search-full:hover {
+    background: #3311cc;
+}
+
+.btn-reset {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #a3aed0;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.btn-reset:hover {
+    color: #4318ff;
+}
+
+/* Divider & Print Button */
+hr.filter-divider {
+    border: 0;
+    border-top: 1px solid #f1f4f9;
+    margin: 20px 0;
+}
+
+.btn-print-custom {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: #ffffff;
+    color: #2b3674;
+    border: 1px solid #e0e5f2;
+    padding: 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn-print-custom:hover {
+    background-color: #f4f7fe;
+    border-color: #4318ff;
+    color: #4318ff;
+}
+
+/* Sembunyikan icon kalender bawaan browser agar menggunakan icon custom */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    padding: 15px;
+    background: #f8f9fa;
+    color: #95a5a6;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    color: #2c3e50;
+    font-size: 0.95rem;
+}
+
+tr:hover td {
+    background-color: #fcfcfc;
+}
+/* --- REVISI TOMBOL BUKTI --- */
+.btn-view-file {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #f4f7fe; /* Warna yang sama dengan input filter */
+    color: #4318ff; /* Warna ungu utama Anda */
+    padding: 6px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.btn-view-file:hover {
+    background-color: #4318ff;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(67, 24, 255, 0.2);
+}
+
+.btn-view-file svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+/* Teks 'Tidak Ada' agar lebih rapi */
+.no-data-text {
+    font-size: 11px;
+    color: #a3aed0;
+    font-style: italic;
+    font-weight: 500;
+}
+/* Warna Badge Status */
+.badge.hadir { color: #2ecc71; font-weight: bold; }
+.badge.telat { color: #e67e22; font-weight: bold; }
+.badge.izin { color: #3498db; font-weight: bold; }

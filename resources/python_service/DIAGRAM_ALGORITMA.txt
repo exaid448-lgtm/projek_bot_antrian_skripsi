@@ -1,0 +1,168 @@
+== PERBANDINGAN: ALGORITMA LAMA vs BARU ==
+
+┌─────────────────────────────────────────────────────────────────┐
+│                    ALGORITMA LAMA (Hardcoded)                   │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                   │
+│  1. DETEKSI KEYWORD LANGSUNG                                     │
+│     if "samsat" in text → check lokasi → SAMSAT_BANJARBARU      │
+│     if "ktp" in text → langsung DUKCAPIL                         │
+│     if "bpjs" in text → langsung BPJS                           │
+│                                                                   │
+│  2. LOKASI HANYA UNTUK SAMSAT                                    │
+│     if "banjarbaru" in text → SAMSAT_BANJARBARU                 │
+│     else → BUTUH_LOKASI                                          │
+│                                                                   │
+│  3. JENIS LAYANAN TERPISAH                                       │
+│     detect_jenis_layanan() → search ["lansia", "darurat", dll]  │
+│                                                                   │
+│  KELEMAHAN:                                                       │
+│  ❌ Hardcoded, perlu edit code untuk update                      │
+│  ❌ Tidak scalable untuk kategori baru                          │
+│  ❌ Keyword limited, tidak bisa dinamis                         │
+│  ❌ Tidak cocok untuk multi-institusi                           │
+│                                                                   │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│                    ALGORITMA BARU (Database)                    │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                   │
+│  1. LOAD DATA DARI DATABASE                                      │
+│     startup: load_database_config()                              │
+│     ├─ SELECT * FROM loket                                       │
+│     └─ SELECT * FROM algoritma                                   │
+│                                                                   │
+│  2. SEARCH ALGORITMA DI DATABASE                                 │
+│     search_algorithm_in_db(text)                                 │
+│     └─ return {loket_id, tipe_layanan, lokasi}                  │
+│                                                                   │
+│  3. LOGIKA ROUTING BERDASARKAN COLUMN 'LOKASI'                   │
+│     if algoritma.lokasi == 'YA' (SAMSAT)                        │
+│        ├─ if text contains lokasi → loket tertentu               │
+│        └─ else → BUTUH_LOKASI                                    │
+│     else (BPJS, DUKCAPIL, DISNAKER)                             │
+│        └─ langsung arahkan ke loket                              │
+│                                                                   │
+│  KEUNTUNGAN:                                                      │
+│  ✅ Dynamic, bisa update database langsung                       │
+│  ✅ Scalable, tambah kategori di DB tanpa code                  │
+│  ✅ Flexible, keyword bisa unlimited                            │
+│  ✅ Multi-loket, support semua jenis institusi                  │
+│  ✅ Admin-friendly, UI untuk manage algoritma                    │
+│  ✅ Maintainable, pisah data dari logic                         │
+│                                                                   │
+└─────────────────────────────────────────────────────────────────┘
+
+== FLOW DIAGRAM ALGORITMA BARU ==
+
+   USER BICARA
+       │
+       ▼
+   ┌─────────────────────┐
+   │  Recognize Google   │
+   │   (Speech to Text)  │
+   └────────┬────────────┘
+            │
+            ▼
+   ┌─────────────────────────────────┐
+   │ search_algorithm_in_db(text)    │
+   │ ├─ Normalize text               │
+   │ ├─ Search di tabel algoritma    │
+   │ └─ return {loket_id, lokasi}    │
+   └────────┬────────────────────────┘
+            │
+            ▼
+    ┌──────────────────────┐
+    │  Ada match?          │
+    └────────┬─────────────┘
+    ┌────────┴────────┐
+    │ YES            │ NO
+    ▼                ▼
+┌─────────────┐  ┌──────────────────────┐
+│ Check if    │  │ return TIDAK_DIKENAL │
+│ lokasi      │  │ Signal = 0           │
+│ column      │  └──────────────────────┘
+│ = 'YA'?     │
+└─────┬───────┘
+ ┌────┴─────┐
+ │ YA  │ TIDAK
+ ▼     ▼
+┌──────────────┐  ┌──────────────────┐
+│ SAMSAT       │  │ Direct to loket  │
+│ (BANJARBARU  │  │ (BPJS, DUKCAPIL, │
+│ atau KALSEL) │  │  DISNAKER)       │
+└──────┬───────┘  └────────┬─────────┘
+       │ Text has             │
+       │ lokasi? ─NO→ ┌──────────────────┐
+       │              │ BUTUH_LOKASI     │
+       │              │ Signal = 0       │
+       │              └──────────────────┘
+       │
+       ├─YES→ SAMSAT_BANJARBARU (signal=1)
+       │
+       └─YES→ SAMSAT_KALSEL (signal=2)
+
+== CONTOH DATA TABEL ==
+
+TABLE: loket
+┌────┬──────────────────┬──────────────────┐
+│ id │ nama_loket       │ nama_pelayanan   │
+├────┼──────────────────┼──────────────────┤
+│ 1  │ SAMSAT BANJARBARU│ Pajak Kendaraan  │
+│ 2  │ SAMSAT KALSEL    │ Pajak Kendaraan  │
+│ 3  │ BPJS Kesehatan   │ Kesehatan        │
+│ 4  │ DUKCAPIL         │ Kependudukan     │
+│ 5  │ DISNAKER         │ Ketenagakerjaan  │
+└────┴──────────────────┴──────────────────┘
+
+TABLE: algoritma
+┌────────────┬─────────┬──────────────────┬──────────────┬───────────┐
+│ id_algoritm│ id_loket│ algoritma        │ tipe_layanan │ lokasi    │
+├────────────┼─────────┼──────────────────┼──────────────┼───────────┤
+│ 1          │ 1       │ pajak motor      │ UMUM         │ YA        │
+│ 2          │ 2       │ pajak mobil kalse│ UMUM         │ YA        │
+│ 3          │ 3       │ bpjs kesehatan   │ UMUM         │           │
+│ 4          │ 4       │ ktp akta nikah   │ UMUM         │           │
+│ 5          │ 5       │ kerja disnaker   │ UMUM         │           │
+└────────────┴─────────┴──────────────────┴──────────────┴───────────┘
+
+== RESPONSE API ==
+
+SEBELUMNYA:
+{
+  "status": "success",
+  "loket": "SAMSAT_BANJARBARU",
+  "signal": "1",
+  "spoken_text": "saya mau urus pajak motor banjarbaru",
+  "response_text": "Baik, silakan menuju loket satu"
+}
+
+SESUDAHNYA:
+{
+  "status": "success",
+  "loket": "SAMSAT_BANJARBARU",
+  "signal": "1",
+  "spoken_text": "saya mau urus pajak motor banjarbaru",
+  "tipe_layanan": "UMUM",
+  "response_text": "Baik, silakan menuju loket satu"
+}
+
+== KONFIGURASI YANG PERLU DIPERSIAPKAN ==
+
+1. ✅ Database MySQL sudah berjalan
+   Port: 3307 (sesuai .env)
+   Database: antrian_bot
+
+2. ✅ Tabel loket dan algoritma sudah dibuat
+   - Jangan lupa primary key dan foreign key
+
+3. ✅ Install dependency Python:
+   pip install -r requirements.txt
+
+4. ✅ Update DB_CONFIG di speech_processor.py jika berbeda
+
+5. ✅ Test koneksi:
+   python speech_processor.py
+   → Jika berhasil, output: "Database configuration berhasil dimuat!"
+

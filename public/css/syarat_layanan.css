@@ -1,0 +1,168 @@
+/* Custom Fonts & Reset */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+[x-cloak] { display: none !important; }
+
+/* Header Styling */
+.page-header {
+    background: #0f172a;
+    padding: 100px 20px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 0 50px 50px;
+}
+
+.header-bg-decoration {
+    position: absolute;
+    top: -50%;
+    left: -10%;
+    width: 120%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.search-wrapper {
+    max-width: 550px;
+    margin: 40px auto 0;
+    position: relative;
+    z-index: 20;
+}
+
+.search-wrapper i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #64748b;
+}
+
+.search-wrapper input {
+    width: 100%;
+    padding: 18px 20px 18px 55px;
+    border-radius: 20px;
+    border: none;
+    font-size: 15px;
+    color: #1e293b;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    outline: none;
+    transition: all 0.3s;
+}
+
+.search-wrapper input:focus {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+}
+
+/* Grid & Cards */
+.content-wrapper {
+    max-width: 1100px;
+    margin: -50px auto 100px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 30;
+}
+
+/* Cari bagian ini di file CSS Anda */
+.grid-syarat {
+    display: grid;
+    /* Ubah dari 300px menjadi 240px atau 250px agar bisa muat 4 kolom */
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px; /* Sedikit dipersempit jaraknya agar lebih lega */
+}
+
+/* Tambahkan ini untuk memastikan di layar sangat lebar tetap maksimal 4 kolom */
+@media (min-width: 1280px) {
+    .grid-syarat {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.card-loket {
+    background: white;
+    padding: 30px;
+    border-radius: 24px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-loket:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.15);
+    border-color: #3b82f6;
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    background: #f1f5f9;
+    padding: 12px;
+    border-radius: 18px;
+    margin-bottom: 20px;
+}
+
+.card-info h3 {
+    font-size: 16px;
+    font-weight: 800;
+    color: #1e293b;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.card-info p {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.6;
+}
+
+.card-footer {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px dashed #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #3b82f6;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 32px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+
+.modal-header {
+    padding: 30px;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.modal-body {
+    padding: 30px;
+}

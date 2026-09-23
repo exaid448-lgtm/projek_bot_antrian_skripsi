@@ -1,0 +1,361 @@
+/* Styling Utama & Penyesuaian Ruang dari Sidebar */
+.syarat-main-wrapper {
+    padding: 32px;
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    margin-left: 260px;
+    min-height: 100vh;
+    background-color: #f8fafc;
+}
+
+.syarat-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.syarat-title-section h2 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.syarat-title-section p {
+    margin: 6px 0 0 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* ==========================================
+   BUTTON STYLE REFACTOR (TAMPILAN BARU)
+   ========================================== */
+
+/* 1. Button Tambah Utama (Biru Gradient Modern) */
+.skm-btn-gradient {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: #ffffff;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skm-btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+    filter: brightness(1.1);
+}
+
+.skm-btn-gradient:active {
+    transform: translateY(0);
+}
+
+/* 2. Button Group Kolom Aksi */
+.syarat-action-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* 3. Tombol Edit (Lingkaran Elegan) */
+.btn-circle-edit {
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #eff6ff;
+    color: #2563eb;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.btn-circle-edit:hover {
+    background-color: #2563eb;
+    color: #ffffff;
+    transform: scale(1.08);
+}
+
+/* 4. Tombol Hapus (Lingkaran Soft Red) */
+.btn-circle-hapus {
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #fff5f5;
+    color: #e53e3e;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.btn-circle-hapus:hover {
+    background-color: #e53e3e;
+    color: #ffffff;
+    transform: scale(1.08);
+}
+
+/* 5. Tombol di Bagian Bawah Modal */
+.syarat-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.btn-modal-batal {
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.btn-modal-batal:hover {
+    background-color: #e2e8f0;
+    color: #1e293b;
+}
+
+.btn-modal-simpan {
+    padding: 10px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+    transition: all 0.2s;
+}
+
+.btn-modal-simpan:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(16, 185, 129, 0.3);
+    filter: brightness(1.05);
+}
+
+/* ==========================================
+   STYLING KOMPONEN PENDUKUNG TABLE & CARD
+   ========================================== */
+
+.syarat-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    padding: 24px;
+    border: 1px solid #e2e8f0;
+}
+
+.skm-table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.skm-table-content {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.skm-table-content th {
+    background-color: #f8fafc;
+    color: #64748b;
+    font-weight: 600;
+    padding: 16px;
+    border-bottom: 2px solid #edf2f7;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.skm-table-content td {
+    padding: 18px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.syarat-text-bold {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.syarat-text-muted {
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Badge Tipe */
+.badge-tipe-dokumen {
+    background-color: #eff6ff;
+    color: #1e40af;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+    border: 1px solid #dbeafe;
+}
+
+/* ==========================================
+   MODAL COMPONENT STYLING
+   ========================================== */
+.syarat-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 99999;
+}
+
+.syarat-modal-overlay.aktif {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.syarat-modal-content {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 560px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    transform: scale(0.95);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.syarat-modal-overlay.aktif .syarat-modal-content {
+    transform: scale(1);
+}
+
+.syarat-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.syarat-modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #1e293b;
+    font-weight: 700;
+}
+
+.syarat-modal-header h3 i {
+    color: #3b82f6;
+    margin-right: 8px;
+}
+
+.syarat-modal-close-x {
+    background: none;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: #94a3b8;
+    transition: color 0.2s;
+}
+
+.syarat-modal-close-x:hover {
+    color: #475569;
+}
+
+.syarat-modal-divider {
+    margin: 16px 0 20px 0;
+    border: 0;
+    border-top: 1px solid #f1f5f9;
+}
+
+.syarat-form-group {
+    margin-bottom: 20px;
+}
+
+.syarat-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #334155;
+    font-size: 14px;
+}
+
+.syarat-form-group input,
+.syarat-form-group select,
+.syarat-form-group textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #334155;
+    background-color: #fff;
+    transition: all 0.2s;
+}
+
+.syarat-form-group input:focus,
+.syarat-form-group select:focus,
+.syarat-form-group textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+}
+
+.input-readonly-custom {
+    background-color: #f8fafc !important;
+    border-color: #e2e8f0 !important;
+    color: #64748b !important;
+    font-weight: 600;
+}
+
+.form-help-text {
+    color: #94a3b8;
+    font-size: 11px;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Responsive Mobile */
+@media (max-width: 991px) {
+    .syarat-main-wrapper {
+        margin-left: 0;
+        padding: 20px;
+    }
+}
+
+/* Custom border radius untuk mencocokkan desain dashboard Anda dengan SweetAlert2 */
+.swal2-border-radius-custom {
+    border-radius: 16px !important;
+    font-family: 'Inter', sans-serif !important;
+}

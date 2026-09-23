@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f4f7fe;
+    color: #333;
+}
+
+.main-content {
+    margin-left: 260px; /* Sesuaikan dengan lebar navbar anda */
+    padding: 40px 30px;
+    min-height: 100vh;
+}
+
+/* Header */
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2b3674;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px; /* Tabel lebar, Filter 350px */
+    gap: 25px;
+    align-items: start;
+}
+
+/* Card General Style */
+.card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.card-inner-title {
+    font-size: 18px;
+    color: #2b3674;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Table Style */
+.table-container {
+    overflow-x: auto;
+}
+
+.table-basic {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-basic th {
+    text-align: left;
+    padding: 12px 15px;
+    color: #a3aed0;
+    font-size: 13px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #f1f4f9;
+}
+
+.table-basic td {
+    padding: 15px;
+    border-bottom: 1px solid #f1f4f9;
+    font-size: 14px;
+    color: #2b3674;
+}
+
+/* Badge Status */
+.badge {
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+.badge.selesai { background: #e2f9ef; color: #05cd99; }
+.badge.dipanggil { background: #fff5e9; color: #ffb547; }
+.badge.menunggu { background: #e9edfe; color: #4318ff; }
+.badge.batal { background: #fff5f5; color: #e53e3e; }
+
+/* Filter Section */
+.filter-title {
+    font-size: 18px;
+    color: #2b3674;
+    margin-bottom: 20px;
+}
+
+.filter-group {
+    margin-bottom: 20px;
+}
+
+.label-text {
+    font-size: 14px;
+    color: #2b3674;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* Search Input Wrapper */
+.search-input-wrapper {
+    display: flex;
+    background: #f4f7fe;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.search-input-wrapper input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 10px 15px;
+    outline: none;
+    font-size: 14px;
+}
+
+.btn-search {
+    background: #4318ff;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* Date Input Wrapper */
+.date-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #f4f7fe;
+    border-radius: 15px;
+    padding: 12px 15px;
+}
+
+.date-input-wrapper input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.calendar-icon-svg {
+    width: 20px;
+    height: 20px;
+    fill: #4318ff;
+    cursor: pointer;
+}
+
+/* Buttons */
+.btn-search-full {
+    width: 100%;
+    background: #4318ff;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-search-full:hover {
+    background: #3311cc;
+}
+
+.btn-reset {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #a3aed0;
+    text-decoration: none;
+}
+
+/* Hide default date icon */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .main-content {
+        margin-left: 0;
+    }
+}
+/* Tambahkan ini di bagian paling bawah data_antrian.css */
+.btn-print-custom {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: #ffffff;
+    color: #2b3674;
+    border: 1px solid #e0e5f2;
+    padding: 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn-print-custom:hover {
+    background-color: #f4f7fe;
+    border-color: #4318ff;
+    color: #4318ff;
+}
+
+/* Style untuk Select Dropdown agar senada dengan Search Input */
+.select-input-wrapper {
+    background: #f4f7fe;
+    border-radius: 15px;
+    padding: 12px 15px;
+}
+
+.select-input-wrapper select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #2b3674;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+hr.filter-divider {
+    border: 0;
+    border-top: 1px solid #f1f4f9;
+    margin: 20px 0;
+}

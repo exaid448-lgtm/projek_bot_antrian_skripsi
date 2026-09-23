@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary: #3b82f6; /* Modern Blue */
+  --primary-hover: #2563eb;
+  --accent: #8b5cf6; /* Modern Violet */
+  --gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --gradient-hover: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  --glass-bg: rgba(15, 23, 42, 0.65); /* Darker sleek glass */
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Outfit', sans-serif;
+  overflow: hidden;
+}
+
+/* Background image with overlay */
+.video-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.video-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.85); /* Slightly darken background for extra depth */
+}
+
+/* Container */
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Responsive sidebar */
+.login-box {
+  width: 100%;
+  max-width: 450px;
+  min-width: 380px;
+  padding: 50px 40px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid var(--glass-border);
+  box-shadow: 10px 0 50px rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--text-primary);
+  box-sizing: border-box;
+}
+
+.blank-side {
+  flex-grow: 1;
+  background: transparent;
+  box-shadow: inset 100px 0 150px -50px rgba(0, 0, 0, 0.4);
+}
+
+/* Brand styling */
+.brand-header {
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.brand-header .logo-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  background: var(--gradient);
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.35);
+}
+
+.brand-header .logo-wrapper i {
+  font-size: 24px;
+  color: #fff;
+}
+
+.brand-header h1 {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(to right, #fff, #cbd5e1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px;
+}
+
+.brand-header p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 6px 0 0 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.input-group i.input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  font-size: 18px;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.input-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px 48px 16px 48px; /* Icon padding */
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 15px;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 48px;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 15px;
+}
+
+/* When input is focused or filled */
+.input-group input:focus,
+.input-group input:valid {
+  border-color: var(--primary);
+  background: rgba(15, 23, 42, 0.4);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+  top: 0;
+  left: 12px;
+  transform: translateY(-50%);
+  font-size: 11px;
+  padding: 2px 8px;
+  background: #10192e; /* matches container background to prevent overlap lines */
+  border-radius: 4px;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.input-group input:focus ~ i.input-icon {
+  color: var(--primary);
+}
+
+/* Show/Hide password toggle */
+#togglePassword {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 16px;
+  transition: all 0.3s ease;
+  padding: 5px;
+}
+
+#togglePassword:hover {
+  color: var(--primary);
+}
+
+/* Error message styling */
+.error-msg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-top: 15px;
+  color: #fca5a5;
+  font-size: 13.5px;
+  font-weight: 500;
+  animation: shake 0.4s ease;
+}
+
+.error-msg i {
+  font-size: 16px;
+}
+
+/* Shake animation for errors */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+/* Button design */
+.login-box button {
+  width: 100%;
+  padding: 16px;
+  background: var(--gradient);
+  border: none;
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 15px;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.login-box button:hover {
+  background: var(--gradient-hover);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.45);
+  transform: translateY(-2px);
+}
+
+.login-box button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
+}
+
+/* Footer / copy text inside login box */
+.login-footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .container {
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-box {
+    max-width: 90%;
+    min-width: unset;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    background: rgba(15, 23, 42, 0.85);
+  }
+  
+  .blank-side {
+    display: none;
+  }
+}

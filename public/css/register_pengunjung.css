@@ -1,0 +1,345 @@
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: sans-serif;
+}
+
+/* Video background */
+/* Video background */
+.video-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+/* TARGETKAN TAG IMG SEKARANG */
+.video-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ini yang membuat gambar selalu menutupi area */
+    object-position: center bottom; 
+}
+/* Container tetap flex */
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Ubah lebar login box jadi lebih ramping */
+.login-box {
+  width: 25%;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  box-shadow: 5px 0 20px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Ubah dari center ke flex-start */
+  padding-top: 20px;
+  color: #000;
+}
+
+/* Blank side sisanya agar dorong ke kanan */
+.blank-side {
+  width: 82%;
+  background: rgba(255,255,255, 0.05);
+}
+
+.input-group {
+  position: relative;
+  margin: 30px 0;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #000;
+  color: #000;
+  font-size: 16px;
+  outline: none;
+}
+
+.input-group label {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  color: #000;
+  pointer-events: none;
+  transition: 0.3s ease;
+  font-size: 16px;
+}
+
+/* Saat input fokus atau berisi, label mengambang ke atas */
+.input-group input:focus + label,
+.input-group input:valid + label {
+  top: -14px;
+  font-size: 12px;
+  color: #ff7c7c;
+}
+
+
+.login-box button {
+    flex: 1; /* Membuat kedua tombol memiliki lebar yang sama */
+    padding: 10px;
+    background-color: #ffb6b6;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.login-box button:hover {
+  background-color: #ff7c7c;
+}
+
+/* Pastikan input-group memiliki position relative */
+.input-group {
+  position: relative;
+  margin: 30px 0;
+}
+
+/* Tambahkan style untuk ikon mata */
+#togglePassword {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  cursor: pointer;
+  color: #000;
+  transition: 0.3s;
+}
+
+/* Agar label tidak tertutup ikon saat mengambang */
+#togglePassword:hover {
+  color: #ff7c7c;
+}
+
+/* Sesuaikan padding input agar teks tidak menabrak ikon */
+.input-group input {
+  width: 85%;
+  padding: 10px 30px 10px 0; /* Tambah padding kanan 30px */
+  /* ... sisa properti lainnya tetap ... */
+}
+/* Tambahkan ini untuk mengatur posisi tombol */
+.button-group {
+    display: flex;
+    gap: 10px; /* Jarak antar tombol */
+    margin-top: 20px;
+}
+
+/* Update style tombol agar fleksibel di dalam group */
+
+
+/* Efek Hover */
+.login-box button:hover {
+    background-color: #ff7c7c;
+}
+
+/* Opsional: Bedakan warna tombol register jika ingin variasi */
+.btn-register {
+    background-color: #9aafcf !important; /* Contoh warna abu-abu */
+    color: white !important;
+}
+
+.btn-register:hover {
+    background-color: #72aac6 !important;
+}
+
+/* Container Header agar rapi */
+.login-header {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+h3 {
+    position: relative;
+    font-size: 50px; /* Sesuaikan ukuran agar muat di box 21% */
+    text-transform: uppercase;
+    color: #222; /* Warna dasar teks */
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+    z-index: 1;
+}
+
+/* Efek Warna Warni di Belakang Teks */
+h3:before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: blur(2px); /* Efek sedikit glow pada teks utama */
+}
+
+/* Efek Cahaya (Glow) Terang di Belakang */
+h3:after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: blur(15px); /* Cahaya menyebar */
+    opacity: 0.8;
+}
+
+/* Sub-judul MPP */
+.login-header p {
+    font-size: 14px;
+    color: #000;
+    margin: 5px 0 10px 0;
+    font-weight: bold;
+}
+.login-box.register-mode {
+    width: 30%; /* Sedikit lebih lebar untuk register */
+}
+
+.register-link {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 13px;
+    color: #000;
+}
+
+.register-link a {
+    color: #ff7c7c;
+    text-decoration: none;
+    font-weight: bold;
+}
+/* Animasi Fade In */
+#step-1, #step-2 {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Penyesuaian h2 agar tidak terlalu besar */
+.login-box h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Atur tombol biar cantik */
+#btn-next {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffb6b6;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#btn-next:hover {
+    background-color: #ff7c7c;
+}
+/* Style Tirai Transisi */
+.page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8); /* Warna putih transparan */
+    backdrop-filter: blur(20px); /* Efek blur yang kuat */
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Class saat transisi aktif */
+.page-transition.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Animasi untuk kotak login agar muncul perlahan saat masuk */
+.login-box {
+    animation: boxFadeIn 0.8s ease forwards;
+}
+
+@keyframes boxFadeIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+/* Khusus untuk input date agar label tetap di atas sejak awal */
+.input-group input[type="date"] + label {
+    top: -14px;
+    font-size: 12px;
+    color: #ff7c7c;
+}
+
+/* Menghilangkan atau merapikan ikon kalender bawaan browser */
+.input-group input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(0); /* Ubah ke invert(1) jika background gelap */
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.input-group input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+/* Container utama untuk radio */
+.input-group-radio {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+/* Label judul "Jenis Kelamin" */
+.label-radio {
+    font-size: 14px;
+    color: #666;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Pembungkus pilihan radio */
+.radio-container {
+    display: flex;
+}
+
+/* Item radio (Laki-laki/Wanita) */
+.radio-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.radio-item input {
+    margin-right: 8px;
+    accent-color: #ff7c7c; /* Menyesuaikan warna mata password kamu */
+    width: 18px;
+    height: 18px;
+}

@@ -1,0 +1,407 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0f2f5; /* Warna dasar jika background image tidak ada */
+    color: #333;
+}
+
+/* UTAMA: Memberi ruang untuk sidebar dan 
+   memastikan konten mengisi sisa layar 
+*/
+
+
+.main-content {
+    /* Sesuaikan margin-left ini dengan lebar sidebar aslimu */
+    /* Jika sidebar aslimu lebarnya 250px, gunakan 250px */
+    margin-left: 260px; 
+    padding: 30px;
+    min-height: 100vh;
+}
+/* TABEL (MEMANJANG PENUH) */
+.glass-box {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    width: 100%; /* Pastikan box mengambil lebar penuh kolom grid */
+}
+h3, h4 {
+    margin-bottom: 25px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+.container-grid {
+    display: grid;
+    /* Gunakan 1fr agar konten kiri fleksibel dan tidak memaksa lebar berlebih */
+    grid-template-columns: 1fr 320px; 
+    gap: 25px;
+    width: 100%;
+    max-width: 100%; /* Memastikan tidak lebih dari lebar layar */
+}
+.table-container {
+    grid-column: 1 / -1; /* Memaksa tabel mengambil lebar penuh dari kiri ke kanan */
+    margin-top: 10px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    padding: 15px;
+    background: #f8f9fa;
+    color: #95a5a6;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    color: #2c3e50;
+    font-size: 0.95rem;
+}
+
+tr:hover td {
+    background-color: #fcfcfc;
+}
+
+/* Responsive untuk layar kecil */
+@media (max-width: 992px) {
+    .main-content {
+        margin-left: 0;
+    }
+    .container-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* ================================
+   SEARCH BAR MODERN
+================================ */
+.search-bar {
+    margin-left: auto;
+    margin-bottom: 25px;
+    background: #cfcfcf;
+    border-radius: 30px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+}
+
+/* INPUT SEARCH */
+.search-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    padding: 8px 12px;
+    width: 200px;
+}
+
+/* INPUT DATE */
+.date-input {
+    background: #a7bfff;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* HILANGKAN BORDER DEFAULT DATE */
+.date-input:focus {
+    outline: none;
+}
+
+/* BUTTON SEARCH */
+.search-btn {
+    background: #a7bfff;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.search-btn:hover {
+    background: #8fa9ff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .search-bar {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+}
+
+/* ================================
+   HILANGKAN BOX PUTIH INPUT SEARCH
+================================ */
+
+/* Input search (hilangkan box putih) */
+.dataTables_filter input,
+.text-box input,
+.text-container input,
+input[type="text"] {
+    background: transparent;   /* HILANGKAN PUTIH */
+    border: none;              /* HILANGKAN GARIS */
+    box-shadow: none;          /* HILANGKAN SHADOW */
+    outline: none;
+    color: #000;
+    padding: 6px 8px;
+}
+
+/* Saat focus (klik) tetap tidak muncul kotak */
+.dataTables_filter input:focus,
+.text-box input:focus {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+/* ================================
+   FILTER BAR JADWAL
+================================ */
+.filter-bar {
+    margin-left: auto;
+    margin-bottom: 25px;
+    background: #cfcfcf;
+    border-radius: 30px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: fit-content;
+}
+
+/* SELECT BULAN & TAHUN */
+.filter-select {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* HILANGKAN BORDER DEFAULT */
+.filter-select:focus {
+    outline: none;
+}
+
+/* BUTTON FILTER */
+.filter-btn {
+    background: #a7bfff;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.filter-btn:hover {
+    background: #8fa9ff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .filter-bar {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+/* Judul Halaman */
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #000;
+}
+
+/* Struktur Grid (Tabel & Filter) */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    gap: 25px;
+    align-items: start;
+}
+
+/* Card Style */
+.card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.card-inner-title {
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+/* Tabel Styling */
+.table-basic {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-basic th {
+    text-align: left;
+    font-size: 12px;
+    color: #8c8c8c;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.table-basic td {
+    padding: 12px;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Badge Status */
+.badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+.badge.masuk { background: #d4edda; color: #155724; }
+.badge.libur { background: #f8d7da; color: #721c24; }
+.badge.izin { background: #fff3cd; color: #856404; }
+
+/* Filter Styling (Kapsul Abu-abu) */
+.filter-group {
+    margin-bottom: 15px;
+}
+
+.label-text {
+    font-size: 12px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    display: block;
+}
+
+.search-input-wrapper, 
+.date-input-wrapper {
+    display: flex;
+    align-items: center;
+    background: #cfcfcf;
+    border-radius: 25px;
+    padding: 5px 5px 5px 15px;
+}
+
+.search-input-wrapper input,
+.date-input-wrapper input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 13px;
+    padding: 5px 0;
+}
+
+/* Tombol Biru Bulat */
+.btn-search, .calendar-btn-custom {
+    /* background: #8fa9ff; */
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.btn-search {
+    border-radius: 20px;
+    width: auto;
+    padding: 0 15px;
+}
+
+.btn-search-full {
+    width: 100%;
+    background: #8fa9ff;
+    border: none;
+    border-radius: 20px;
+    padding: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-print-custom {
+    display: block;
+    text-align: center;
+    background: #8fa9ff;
+    color: #000;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.calendar-icon-svg { width: 16px; height: 16px; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+    .main-content { margin-left: 0; }
+}
+/* Menghilangkan icon kalender bawaan Chrome/Edge/Safari */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+/* Pastikan wrapper memiliki posisi relatif */
+.date-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+/* Warna Badge Khusus Jadwal (Jika menggunakan CSS yang sama) */
+.badge.masuk { background: #e2f9ef; color: #05cd99; } /* Hijau */
+.badge.libur { background: #ffe5e5; color: #ff5b5b; } /* Merah */
+.badge.izin { background: #fff5e9; color: #ffb547; }  /* Orange */

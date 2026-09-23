@@ -1,0 +1,513 @@
+/* data_jadwal.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1e1e1e;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.main-content {
+    margin-left: 260px; /* Sesuaikan dengan lebar sidebar navbar */
+    width: calc(100% - 260px);
+    padding: 10px 15px; /* Padding dikurangi dari 40px 30px */
+    min-height: 100vh;
+}
+
+/* Header Section */
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Jarak dikurangi */
+}
+
+.page-title {
+    font-size: 20px; /* Perkecil dari 24px */
+    font-weight: 600;
+    color: #2b3674;
+}
+
+.btn-add-main {
+    background-color: #4318ff;
+    color: white;
+    padding: 10px 20px; /* Padding tombol lebih rapat */
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-add-main:hover {
+    background-color: #3311cc;
+    transform: translateY(-2px);
+}
+
+/* Dashboard Grid Layout */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px; /* Tabel fleksibel, Filter lebih sempit (280px) di kanan */
+    gap: 15px; /* Jarak grid dikurangi */
+    align-items: start;
+}
+
+/* Card Style */
+.card {
+    background: #ffffff;
+    border-radius: 15px; /* Radius sedikit diperkecil */
+    padding: 18px; /* Padding dikurangi dari 25px */
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+    min-width: 0; /* Mencegah overflow pada flex/grid items */
+}
+
+.card-inner-title {
+    font-size: 15px; /* Perkecil dari 18px */
+    color: #2b3674;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Table Style */
+.table-container {
+    overflow-x: auto;
+}
+
+.table-basic {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-basic th {
+    text-align: left;
+    padding: 10px 8px;
+    color: #a3aed0;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #f1f4f9;
+}
+
+.table-basic td {
+    padding: 8px 8px; /* Padding sel dikurangi agar tabel lebih muat */
+    border-bottom: 1px solid #f1f4f9;
+    font-size: 12px; /* Font isi tabel lebih kecil */
+    color: #2b3674;
+}
+
+/* Badge Status Jadwal */
+.badge {
+    padding: 4px 10px; /* Badge lebih mungil */
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+/* Warna disesuaikan dengan status kehadiran */
+.badge.hadir { background: #e2f9ef; color: #05cd99; }
+.badge.ijin, .badge.izin { background: #fff5e9; color: #ffb547; }
+.badge.alpa, .badge.mangkir { background: #feebeb; color: #ee5d50; }
+.badge.belum { background: #e9edfe; color: #4318ff; }
+
+/* Action Buttons di Tabel */
+.action-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-edit-table {
+    background: #e9edfe;
+    color: #4318ff;
+    border: none;
+    padding: 5px 8px; /* Tombol aksi lebih kecil */
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 11px;
+    transition: 0.3s;
+}
+
+.btn-delete-table {
+    background: #feebeb;
+    color: #ee5d50;
+    border: none;
+    padding: 5px 8px; /* Tombol aksi lebih kecil */
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 11px;
+    transition: 0.3s;
+}
+
+.btn-edit-table:hover { background: #dce3ff; }
+.btn-delete-table:hover { background: #ffdada; }
+
+/* --- FILTER SECTION (Sisi Kanan) --- */
+.filter-title {
+    font-size: 18px;
+    color: #2b3674;
+    margin-bottom: 20px;
+}
+
+.filter-group {
+   margin-bottom: 12px; /* Jarak antar input filter lebih rapat */
+}
+
+.label-text {
+    font-size: 12px; /* Label diperkecil */
+    color: #2b3674;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* Input Styles */
+.search-input-wrapper, 
+.select-input-wrapper, 
+.date-input-wrapper {
+    display: flex;
+    background: #f4f7fe;
+    border-radius: 15px;
+    padding: 5px;
+    align-items: center;
+}
+
+.search-input-wrapper input,
+.select-input-wrapper select,
+.date-input-wrapper input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 8px 12px; /* Input lebih tipis */
+    outline: none;
+    font-size: 13px;
+    color: #2b3674;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-search {
+    background: #4318ff;
+    color: white;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.calendar-icon-svg {
+    width: 20px;
+    height: 20px;
+    fill: #4318ff;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+/* Filter Action Buttons */
+.btn-search-full {
+    width: 100%;
+    background: #4318ff;
+    color: white;
+    border: none;
+    padding: 12px; /* Perkecil dari 15px */
+    font-size: 13px;
+    border-radius: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-search-full:hover { background: #3311cc; }
+
+.btn-reset {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #a3aed0;
+    text-decoration: none;
+}
+
+hr.filter-divider {
+    border: 0;
+    border-top: 1px solid #f1f4f9;
+    margin: 20px 0;
+}
+
+.btn-print-custom {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: #ffffff;
+    color: #2b3674;
+    border: 1px solid #e0e5f2;
+    padding: 10px;
+    font-size: 13px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn-print-custom:hover {
+    border-color: #4318ff;
+    color: #4318ff;
+    background: #f4f7fe;
+}
+
+/* Date Picker Reset */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    left: 0; top: 0; width: 100%; height: 100%;
+    margin: 0; padding: 0; cursor: pointer; opacity: 0;
+}
+.date-input-wrapper { position: relative; padding: 12px 15px; }
+
+/* Responsive */
+@media (max-width: 1100px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+    .main-content { margin-left: 0; }
+}
+/* ============================================================
+   BAGIAN DISAIN POP-UP (MODAL) - DIAMBIL DARI KODE LAMA
+   ============================================================ */
+
+/* --- ANIMASI & OVERLAY MODAL --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none; /* Munculkan via JS (display: flex) */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(3px);
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+/* Saat Modal Aktif */
+.modal-overlay.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px; /* Padding modal lebih rapat */
+    border-radius: 20px;
+    width: 360px; /* Lebar modal dipersempit */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    
+    /* Efek Membal (Bounce) */
+    transform: scale(0.7);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-overlay.show .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* --- STYLING FORM DALAM MODAL --- */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.modal-line {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 15px 0 20px 0;
+}
+
+.input-group-modal {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-group-modal label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #555;
+    margin-left: 5px;
+}
+
+.input-group-modal select, 
+.input-group-modal input {
+    width: 100%;
+    padding: 8px 12px; /* Input dalam modal lebih ramping */
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    font-size: 14px;
+}
+
+/* MODAL DATE INPUT KHUSUS */
+.modal-date-input-box {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.modal-date-input-box input[type="date"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+/* Menghilangkan icon bawaan agar bisa pakai icon custom */
+.modal-date-input-box input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    margin: 0; padding: 0; opacity: 0; cursor: pointer;
+}
+
+.modal-calendar-icon {
+    position: absolute;
+    right: 15px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* --- MODAL FOOTER & BUTTONS --- */
+/* --- MODAL FOOTER & BUTTONS --- */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-cancel-jadwal {
+    background: #eee;
+    color: #333;
+    border: none;
+    /* Gunakan min-width agar ukuran tombol minimal sama */
+    min-width: 100px; 
+    padding: 10px 15px; 
+    font-size: 13px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600; /* Samakan berat font */
+    transition: 0.3s;
+}
+
+.btn-save-jawal {
+    background: #4318ff; /* Saya sarankan ganti ke biru utama agar serasi */
+    color: white;
+    border: none;
+    min-width: 100px;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Tambahan hover agar seragam */
+.btn-cancel:hover { background: #ddd; }
+.btn-save:hover { background: #3311cc; }
+
+/* --- MODAL HAPUS (KHUSUS) --- */
+.modal-delete-size {
+    max-width: 320px; /* Lebih kecil */
+    text-align: center;
+    padding: 30px;
+}
+
+.warning-svg {
+    width: 50px;
+    height: 50px;
+    fill: #ff6b6b;
+    margin-bottom: 15px;
+}
+
+.btn-confirm-delete {
+    background: #ff6b6b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+/* --- MODAL HAPUS (KHUSUS) --- */
+.modal-footer-delete {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.btn-cancel-delete {
+    background: #f4f7fe;
+    color: #a3aed0;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.btn-cancel-delete:hover {
+    background: #e9edfe;
+    color: #2b3674;
+}
+
+.btn-confirm-delete {
+    background: #ee5d50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.3s;
+    box-shadow: 0 4px 12px rgba(238, 93, 80, 0.2);
+}
+
+.btn-confirm-delete:hover {
+    background: #d34336;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(238, 93, 80, 0.3);
+}
+
+.delete-title {
+    font-size: 18px;
+    color: #2b3674;
+    margin-bottom: 8px;
+}
+
+.delete-subtitle {
+    font-size: 13px;
+    color: #a3aed0;
+}

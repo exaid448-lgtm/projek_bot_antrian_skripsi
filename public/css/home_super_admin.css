@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', 'Poppins', sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+}
+
+/* MAIN CONTENT WRAPPER */
+.main-content {
+    margin-left: 260px;
+    padding: 40px;
+    background: #f8fafc;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   HEADER SECTION
+   ========================================================================== */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    gap: 20px;
+}
+
+.dashboard-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    position: relative;
+}
+
+/* SEARCH BAR */
+.search-box {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 30px;
+    padding: 4px 6px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+    transition: all 0.3s ease;
+    width: 320px;
+}
+
+.search-box:focus-within {
+    border-color: #3b82f6;
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.12);
+}
+
+.search-box input {
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #1e293b;
+    flex: 1;
+    font-family: inherit;
+}
+
+.search-box input::placeholder {
+    color: #94a3b8;
+}
+
+.search-box button {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
+    transition: all 0.2s ease;
+}
+
+.search-box button:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    box-shadow: 0 6px 14px rgba(59, 130, 246, 0.3);
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   GRID & LAYOUT
+   ========================================================================== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2.2fr 1fr;
+    gap: 30px;
+}
+
+/* CARDS */
+.card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+}
+
+.card-wide {
+    min-height: 340px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   TABLES
+   ========================================================================== */
+.table-basic {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-basic th {
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    padding: 16px 20px;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid #f1f5f9;
+    background-color: #f8fafc;
+}
+
+.table-basic td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.table-basic tr:last-child td {
+    border-bottom: none;
+}
+
+.table-basic tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table-basic tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.empty {
+    text-align: center;
+    color: #94a3b8;
+    padding: 40px 20px !important;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   SUMMARY COLUMNS & STATS CARDS
+   ========================================================================== */
+.summary-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.summary-card {
+    border-radius: 20px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.03);
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.summary-card:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.summary-card p {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+
+.summary-card h1 {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+/* GRADIENTS FOR SUMMARY CARDS */
+.summary-card.green {
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    border-left: 6px solid #10b981;
+    color: #065f46;
+}
+
+.summary-card.red {
+    background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+    border-left: 6px solid #f43f5e;
+    color: #9f1239;
+}
+
+.summary-card.blue {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-left: 6px solid #3b82f6;
+    color: #1e40af;
+}
+
+/* ==========================================================================
+   STATUS BADGES & PULSE EFFECT
+   ========================================================================== */
+.mt-30 {
+    margin-top: 30px;
+}
+
+.status-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.status-container-login {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Service Badge (Buka / Tutup) */
+.service-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 90px;
+    gap: 6px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.service-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.service-badge.buka {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+}
+
+.service-badge.buka .service-dot {
+    background-color: #ffffff;
+}
+
+.service-badge.tutup {
+    background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(244, 63, 94, 0.2);
+}
+
+.service-badge.tutup .service-dot {
+    background-color: #ffffff;
+}
+
+/* Karyawan Online / Offline Status Badge */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    min-width: 95px;
+    justify-content: center;
+}
+
+.status-text {
+    line-height: 1;
+}
+
+/* Dot Pulse Animation */
+.status-dot-pulse {
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.status-dot-pulse::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #10b981;
+    border-radius: 50%;
+    animation: pulse-animation 1.5s infinite;
+}
+
+.status-dot-static {
+    width: 8px;
+    height: 8px;
+    background-color: #94a3b8;
+    border-radius: 50%;
+    flex-shrink: 0;
+    opacity: 0.8;
+}
+
+@keyframes pulse-animation {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(2.8); opacity: 0; }
+}
+
+.status-badge.online {
+    background-color: #ecfdf5;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+}
+
+.status-badge.offline {
+    background-color: #f1f5f9;
+    color: #64748b;
+    border: 1px solid #cbd5e1;
+}
+
+/* Alignment fixes for table elements */
+.table-basic th {
+    text-align: left;
+}
+
+.table-basic th[style*="text-align: center"],
+.table-basic th[style*="text-align:center"] {
+    text-align: center;
+}
+
+.table-basic td {
+    vertical-align: middle;
+}

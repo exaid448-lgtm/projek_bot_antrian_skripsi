@@ -1,0 +1,408 @@
+/* public/css/notif_masalah.css */
+
+/* Kontainer utama yang menggeser konten dari balik sidebar */
+.main-content {
+    padding: 30px;
+    /* Memberikan jarak aman 260px agar tidak tertutup sidebar kiri */
+    margin-left: 260px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8fafc;
+    min-height: 100vh;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* Header Halaman */
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 15px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+/* Tombol Tambah Pemberitahuan */
+.btn-add-notification {
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+    transition: all 0.2s;
+}
+
+.btn-add-notification:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+/* Grid Layout Kartu */
+.notification-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Desain Kartu Modern */
+.card-notification {
+    background: #f1f1f1;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border-left: 6px solid #cbd5e1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    border-top: 1px solid #f1f5f9;
+    border-right: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* Warna Indikator Kategori (Sesuai database enum) */
+.card-critical {
+    border-left-color: #ef4444;
+}
+
+.card-warning {
+    border-left-color: #f59e0b;
+}
+
+.card-normal {
+    border-left-color: #10b981;
+}
+
+/* Metadata di dalam Kartu */
+.notification-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 90px;
+    /* Jarak aman dari tombol aksi */
+}
+
+.badge-category {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+.badge-critical {
+    background-color: #fee2e2;
+    color: #ef4444;
+}
+
+.badge-warning {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.badge-normal {
+    background-color: #d1fae5;
+    color: #059669;
+}
+
+.notification-date {
+    font-size: 13px;
+    color: #64748b;
+    margin-left: 8px;
+}
+
+.status-indicator {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.status-active {
+    color: #16a34a;
+}
+
+.status-archive {
+    color: #94a3b8;
+}
+
+.notification-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+/* Pembungkus Box Detail Informasi (Kiri & Kanan) */
+.info-box-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    background: linear-gradient(145deg, #e3e1e1, #e3e1e1);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+    /* Memberikan efek depth ke dalam */
+}
+
+@media (max-width: 992px) {
+    .info-box-wrapper {
+        grid-template-columns: 1fr;
+        /* Responsif jika layar mengecil */
+        gap: 16px;
+    }
+}
+
+/* Styling untuk masing-masing kolom informasi */
+.info-section {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+    transition: transform 0.2s ease;
+}
+
+.info-section:hover {
+    transform: translateY(-2px);
+    /* Efek hover halus */
+}
+
+.info-section h5 {
+    margin: 0 0 10px 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.75px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Memberikan warna semi-spesifik pada icon/emoji di sub-heading agar lebih stand out */
+.info-section h5 span {
+    font-size: 15px;
+}
+
+.info-section p {
+    margin: 0;
+    font-size: 13.5px;
+    color: #475569;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.info-section p {
+    margin: 0;
+    font-size: 14px;
+    color: #334155;
+    line-height: 1.6;
+}
+
+/* Tombol Aksi di Kanan Atas Kartu */
+.card-actions {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    gap: 8px;
+}
+
+.btn-action-icon {
+    background: #f1f5f9;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.btn-action-icon:hover {
+    background-color: #e2e8f0;
+}
+
+.btn-delete:hover {
+    background-color: #fee2e2;
+    color: #ef4444;
+}
+
+/* ==================== STYLE MODAL POPUP ==================== */
+.custom-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 99999;
+    /* Menimpa sidebar saat terbuka */
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content-box {
+    background-color: #ffffff;
+    padding: 28px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 650px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 19px;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.close-btn {
+    font-size: 24px;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #ef4444;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.form-group-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    color: #1e293b;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 18px;
+    margin-top: 22px;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(37, 99, 235, 0.2);
+}
+
+.btn-secondary {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-secondary:hover {
+    background-color: #e2e8f0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Penyesuaian Responsif Layar Kecil Tablet/HP */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .btn-add-notification {
+        width: 100%;
+        justify-content: center;
+    }
+}

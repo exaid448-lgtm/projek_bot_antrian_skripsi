@@ -1,0 +1,407 @@
+/* =========================================
+   CSS FULL HALAMAN KONSULTASI MPP - ROUNDED VERSION
+   ========================================= */
+
+/* RESET & BASE */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url('../img/backgraund_konsul/—Pngtree—modern blur office room background_15829605.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    padding: 15px 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar img {
+    width: 60px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.taxt-nav h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.navbar h2 {
+    font-size: 0.9rem;
+    margin: 2px 0 0 0;
+    color: #86c7d6;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+/* LAYOUT CONTAINER */
+.container {
+    margin: 50px auto;
+    padding: 0 20px;
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+}
+
+/* MAIN FORM BOX (Glassmorphism) */
+.data-konsultasi-full {
+    width: 100%;
+    background-color: rgba(25, 25, 25, 0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 30px; /* Lebih bulat */
+    padding: 40px;
+    color: white;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.data-konsultasi-full h3 {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+    color: #86c7d6;
+    font-weight: 700;
+}
+
+.info-text {
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+    color: #bcc6c7;
+}
+
+/* DROPDOWN SYSTEM (CAPSULE STYLE) */
+.dropdown-wrapper {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.dropdown-custom {
+    position: relative;
+    flex: 1;
+}
+
+.dropdown-header {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 50px; /* Bentuk Kapsul */
+    padding: 6px 20px 6px 8px;
+    cursor: pointer;
+    color: #1a1a1a;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-header:hover {
+    background: #f0fdfd;
+    transform: translateY(-2px);
+}
+
+.dropdown-header span {
+    flex: 1;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding-left: 10px;
+}
+
+.icon-circle {
+    background-color: #86c7d6;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%; /* Bulat Sempurna */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow-up {
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid rgb(83, 79, 79); /* Panah Putih */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown-custom.active .arrow-up {
+    transform: rotate(180deg);
+}
+
+.dropdown-list {
+    position: absolute;
+    top: 120%;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-radius: 20px; /* Bulat Halus */
+    list-style: none;
+    padding: 10px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.dropdown-custom.active .dropdown-list {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-list li {
+    padding: 12px 25px;
+    color: #333;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.dropdown-list li:hover {
+    background: #e0f7f7;
+    color: #0088cc;
+    padding-left: 30px; /* Efek geser saat hover */
+}
+
+/* TEXTAREA */
+.input-konsul {
+    width: 100%;
+    height: 220px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #1a1a1a;
+    font-size: 1rem;
+    border-radius: 20px; /* Bulat Halus */
+    padding: 20px;
+    border: 3px solid transparent;
+    outline: none;
+    resize: none;
+    font-family: inherit;
+    transition: 0.3s;
+}
+
+.input-konsul:focus {
+    background: #ffffff;
+    border-color: #86c7d6;
+    box-shadow: 0 0 15px rgba(134, 199, 214, 0.3);
+}
+
+/* FOOTER & BUTTON */
+.footer-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.note {
+    font-size: 0.8rem;
+    color: #bcc6c7;
+    font-style: italic;
+    max-width: 60%;
+    line-height: 1.4;
+}
+
+.submit-btn {
+    background-color: #00aaee;
+    color: white;
+    padding: 14px 40px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 50px; /* Tombol Kapsul */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 170, 238, 0.3);
+}
+
+.submit-btn:hover {
+    background-color: #0088cc;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 170, 238, 0.4);
+}
+
+/* UTILITIES */
+.disabled-style {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* NOTIFICATION ALERT */
+/* NOTIFICATION ALERT (Glassmorphism Bottom Style) */
+.alert-container {
+    position: fixed;
+    bottom: 30px; /* Pindah ke bawah */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: 90%;
+    max-width: 450px;
+    animation: slideUp 0.5s ease; /* Animasi muncul dari bawah */
+}
+
+.alert-custom {
+    padding: 15px 25px;
+    border-radius: 50px; /* Bentuk kapsul agar serasi dengan dropdown */
+    backdrop-filter: blur(10px); /* Efek blur kaca */
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Warna Transparan (Menggunakan RGBA agar tembus pandang) */
+.alert-success { 
+    background: rgba(40, 167, 69, 0.4) !important; /* Hijau Transparan */
+}
+
+.alert-danger { 
+    background: rgba(220, 53, 69, 0.4) !important; /* Merah Transparan */
+}
+
+.alert-icon {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.alert-message h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.alert-message p {
+    margin: 0;
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+/* Animasi tambahan */
+@keyframes slideUp {
+    from { bottom: -100px; opacity: 0; }
+    to { bottom: 30px; opacity: 1; }
+}
+
+.fade-out {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px); /* Geser dikit pas hilang */
+    transition: all 0.8s ease;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .dropdown-wrapper {
+        flex-direction: column;
+    }
+    .footer-form {
+        flex-direction: column-reverse;
+        gap: 20px;
+        text-align: center;
+    }
+    .note {
+        max-width: 100%;
+    }
+    .navbar {
+        padding: 15px 20px;
+    }
+}
+/* BLOK INFO USER PROFIL */
+.user-profile-info {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.158); /* Transparan putih tipis */
+    padding: 12px 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    border-left: 4px solid #86c7d6; /* Aksen warna biru tema */
+    backdrop-filter: blur(5px);
+}
+
+.profile-icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    opacity: 0.8;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-details span {
+    font-size: 0.75rem;
+    color: #bcc6c7;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.profile-details strong {
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.profile-details small {
+    font-size: 0.8rem;
+    color: #86c7d6;
+}
+
+/* Penyesuaian Responsif */
+@media (max-width: 600px) {
+    .user-profile-info {
+        padding: 10px 15px;
+    }
+    .profile-details strong {
+        font-size: 0.9rem;
+    }
+}
+.btn-back-modern {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #818cf8; /* Warna indigo-400 */
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-back-modern:hover {
+    color: #a5b4fc; /* Warna indigo-300 */
+}
+
+.icon-arrow {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+}
+
+/* Efek transform: group-hover:-translate-x-1 */
+.btn-back-modern:hover .icon-arrow {
+    transform: translateX(-4px);
+}

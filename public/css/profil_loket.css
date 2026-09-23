@@ -1,0 +1,512 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5; /* Warna dasar jika background image tidak ada */
+    color: #333;
+}
+
+/* UTAMA: Memberi ruang untuk sidebar dan 
+   memastikan konten mengisi sisa layar 
+*/
+
+
+.main-content {
+    /* Sesuaikan margin-left ini dengan lebar sidebar asli Anda */
+    /* Jika sidebar Anda lebarnya 250px, ubah ke 250px */
+    margin-left: 260px; 
+    padding: 40px 30px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; /* Mencegah scroll horizontal yang tidak perlu */
+}
+.page-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #2c3e50;
+}
+
+/* GRID LAYOUT BARU */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 25px;
+    align-items: start;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 992px) {
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.profile-left-col,
+.profile-right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* CARD UMUM */
+.profile-card,
+.info-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+    border: 1px solid #f1f5f9;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.profile-card:hover,
+.info-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+/* HEADER PROFIL */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #eaeaea;
+}
+
+.profile-name h4 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.profile-name span {
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+/* INFO ROW */
+.info-card h4 {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row span {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.info-row p {
+    font-weight: 500;
+}
+
+/* BADGE STATUS */
+.badge {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge.open {
+    background: #d4f8e8;
+    color: #27ae60;
+}
+
+.badge.close {
+    background: #fdecea;
+    color: #c0392b;
+}
+
+/* ==========================================================================
+   FITUR KINERJA KARYAWAN
+   ========================================================================== */
+
+/* FILTER SECTION */
+.filter-section {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    border: 1px solid #f1f5f9;
+}
+
+.filter-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-title i {
+    font-size: 18px;
+    color: #3b82f6;
+}
+
+.filter-title h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+}
+
+.filter-form {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-group label {
+    font-size: 13.5px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.input-group input[type="month"] {
+    padding: 8px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 13.5px;
+    color: #1e293b;
+    outline: none;
+    background: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.input-group input[type="month"]:focus {
+    border-color: #3b82f6;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.btn-filter {
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-filter:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.btn-filter:active {
+    transform: translateY(0);
+}
+
+/* KINERJA WRAPPER GRID */
+.kinerja-wrapper {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 992px) {
+    .kinerja-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+.kinerja-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f1f5f9;
+}
+
+.card-section-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 10px;
+}
+
+.card-section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 14px;
+    background: #3b82f6;
+    border-radius: 2px;
+}
+
+/* CIRCULAR PROGRESS */
+.circular-progress-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0 15px 0;
+}
+
+.circular-progress {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: conic-gradient(#3b82f6 331.2deg, #f1f5f9 0deg); /* 92/100 -> 92% -> 331.2deg */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: background 0.5s ease;
+}
+
+.circular-progress::before {
+    content: '';
+    position: absolute;
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+.inner-circle {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.score-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1;
+}
+
+.score-label {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+    margin-top: 3px;
+}
+
+/* SCORE SUMMARY & BADGE */
+.score-summary {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.score-summary p {
+    font-size: 14px;
+    font-weight: 500;
+    color: #475569;
+    margin-bottom: 4px;
+}
+
+.status-badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-badge.excellent {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.status-badge.good {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-badge.warning {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.score-summary small {
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+/* RIWAYAT KESALAHAN */
+.riwayat-kesalahan h5 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 12px;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 15px;
+}
+
+.kesalahan-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.kesalahan-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff8f8;
+    border: 1px solid #fee2e2;
+    padding: 10px 14px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.kesalahan-item:hover {
+    transform: translateX(2px);
+    border-color: #fca5a5;
+}
+
+.kesalahan-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.kesalahan-info strong {
+    font-size: 12px;
+    color: #991b1b;
+}
+
+.kesalahan-info span {
+    font-size: 10px;
+    color: #b91c1c;
+    opacity: 0.8;
+}
+
+.deduction {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #ef4444;
+}
+
+/* CHART CARD & CONTAINER */
+.chart-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-container-wrapper {
+    flex: 1;
+    position: relative;
+    min-height: 320px;
+    width: 100%;
+}
+
+/* MODAL STYLES & EDIT BUTTON */
+.btn-edit-profile {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.btn-edit-profile:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.btn-edit-profile:active {
+    transform: translateY(0);
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.modal-container {
+    background: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    padding: 25px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    border: 1px solid #e2e8f0;
+    animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
