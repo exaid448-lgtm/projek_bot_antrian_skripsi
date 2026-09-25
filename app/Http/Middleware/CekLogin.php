@@ -26,17 +26,42 @@ class CekLogin
         // 1. CEK APAKAH USER SUDAH LOGIN
         if (!session()->has('is_login') || session('is_login') !== true) {
             
-            // Jika mau ke dashboard pengunjung tapi belum login
-            if ($request->is('pengunjung/*') || $request->is('konsul*') || $request->is('booking-antrian*')) {
+            // Jika mau ke area pengunjung tapi belum login
+            if (
+                $request->is('pengunjung/*') || 
+                $request->is('dashboard-pengunjung*') ||
+                $request->is('riwayat-antrian*') ||
+                $request->is('booking-antrian*') ||
+                $request->is('konsul*') ||
+                $request->is('chat-konsultasi*') ||
+                $request->is('catatan_konsul*') ||
+                $request->is('profil*') ||
+                $request->is('syarat-layanan*') ||
+                $request->is('pusat-informasi*') ||
+                $request->is('status-antrian*') ||
+                $request->is('monitor-antrian*') ||
+                $request->is('cek-status-skm*') ||
+                $request->is('simpan-skm*')
+            ) {
                 return redirect()->guest(route('login_pengunjung'))->with('error', 'Silakan login terlebih dahulu untuk mengakses layanan ini.');
             }
 
             // Jika mau ke area pegawai tapi belum login
-            if ($request->is('dashboard*') || $request->is('admin*') || $request->is('super*')) {
+            if (
+                $request->is('dashboard') || 
+                $request->is('dashboard/*') || 
+                $request->is('admin*') || 
+                $request->is('super*') ||
+                $request->is('loket*') ||
+                $request->is('data-*') ||
+                $request->is('laporan-skm*') ||
+                $request->is('algoritma*') ||
+                $request->is('chat_loket*')
+            ) {
                 return redirect()->route('login')->with('error', 'Sesi pegawai berakhir.');
             }
 
-            return redirect('/'); 
+            return redirect()->guest(route('login_pengunjung'))->with('error', 'Silakan login terlebih dahulu untuk mengakses layanan ini.'); 
         }
 
         // 2. LOGIKA UPDATE STATUS (Jika sudah login)

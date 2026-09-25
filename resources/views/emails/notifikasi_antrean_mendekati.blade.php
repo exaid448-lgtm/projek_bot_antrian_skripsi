@@ -228,7 +228,7 @@
                 </div>
 
                 <div class="btn-wrapper">
-                    <a href="{{ url('/dashboard-pengunjung') }}" class="btn">
+                    <a href="{{ route('dashboard.pengunjung') }}" class="btn">
                         Buka Dashboard Antrean
                     </a>
                 </div>
