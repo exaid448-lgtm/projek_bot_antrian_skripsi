@@ -200,16 +200,25 @@ class LoketDashboardController extends Controller
                         // 1. KIRIM NOTIFIKASI EMAIL VIA MAILTRAP (Cegah duplikasi jika sudah pernah dikirim)
                         if ($profilPengunjung && !empty($profilPengunjung->email) && !$nextAntrian->notifikasi_email_dikirim) {
                             try {
-                                Mail::to($profilPengunjung->email)->send(new NotifikasiAntreanMendekati($nextAntrian, $antrian));
-                                
-                                // Tandai bahwa notifikasi email sudah terkirim (Anti-Spam)
-                                $nextAntrian->update([
-                                    'notifikasi_email_dikirim' => true,
-                                    'waktu_notifikasi_email'   => Carbon::now(),
-                                ]);
+                                $mailHost = config('mail.mailers.smtp.host');
+                                $mailPort = config('mail.mailers.smtp.port', 2525);
+                                $isHostReachable = @fsockopen($mailHost, $mailPort, $errno, $errstr, 1.5);
 
-                                \Illuminate\Support\Facades\Log::info("Mailtrap: Notifikasi Email Giliran Mendekati berhasil dikirim ke {$profilPengunjung->email} untuk Nomor Antrean {$nextAntrian->nomor_antrian} (Saat ini melayani {$antrian->nomor_antrian})");
-                            } catch (\Exception $mailEx) {
+                                if ($isHostReachable) {
+                                    fclose($isHostReachable);
+                                    Mail::to($profilPengunjung->email)->send(new NotifikasiAntreanMendekati($nextAntrian, $antrian));
+                                    
+                                    // Tandai bahwa notifikasi email sudah terkirim (Anti-Spam)
+                                    $nextAntrian->update([
+                                        'notifikasi_email_dikirim' => true,
+                                        'waktu_notifikasi_email'   => Carbon::now(),
+                                    ]);
+
+                                    \Illuminate\Support\Facades\Log::info("Mailtrap: Notifikasi Email Giliran Mendekati berhasil dikirim ke {$profilPengunjung->email} untuk Nomor Antrean {$nextAntrian->nomor_antrian} (Saat ini melayani {$antrian->nomor_antrian})");
+                                } else {
+                                    \Illuminate\Support\Facades\Log::warning("Mailtrap: Server SMTP ({$mailHost}:{$mailPort}) tidak merespons dalam 1.5 detik (terblokir jaringan/offline). Notifikasi email dilewati agar pelayanan loket tetap berjalan lancar.");
+                                }
+                            } catch (\Throwable $mailEx) {
                                 \Illuminate\Support\Facades\Log::error("Mailtrap Notification Error: " . $mailEx->getMessage());
                             }
                         }
@@ -244,13 +253,13 @@ class LoketDashboardController extends Controller
                                     $twilio->messages->create("whatsapp:" . $no_wa, $pesanParams);
                                     \Illuminate\Support\Facades\Log::info("Twilio: Notifikasi H-1 terkirim ke $no_wa (Antrean: {$nextAntrian->nomor_antrian})");
                                 }
-                            } catch (\Exception $waEx) {
+                            } catch (\Throwable $waEx) {
                                 $fromDebug = str_starts_with($from ?? '', 'whatsapp:') ? ($from ?? '') : "whatsapp:" . ($from ?? '');
                                 \Illuminate\Support\Facades\Log::error("Twilio H-1 Notification Error: " . $waEx->getMessage() . " | FROM: " . $fromDebug . " | TO: whatsapp:" . ($no_wa ?? ''));
                             }
                         }
                     }
-                } catch (\Exception $e) {
+                } catch (\Throwable $e) {
                     \Illuminate\Support\Facades\Log::error("General H-1 Notification Error: " . $e->getMessage());
                 }
                 
@@ -275,7 +284,7 @@ class LoketDashboardController extends Controller
                 'waktu_selesai' => $antrianTerbaru->waktu_selesai ? Carbon::parse($antrianTerbaru->waktu_selesai)->format('H:i:s') : null,
             ]);
 
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
     }
