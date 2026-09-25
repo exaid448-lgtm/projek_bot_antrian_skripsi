@@ -33,15 +33,27 @@ class BookingAntrianController extends Controller
         
         // Cek profil pengunjung untuk status prioritas
         $profil = \App\Models\ProfilPengunjung::where('id_user', session('id_user'))->first();
-        $isPermanen = $profil && $profil->status_prioritas === 'disetujui' && $profil->jenis_prioritas === 'disabilitas_permanen';
-        $isPrioritasUmum = $profil && $profil->status_prioritas === 'disetujui';
+        
         $isLansia = false;
         if ($profil && $profil->tanggal_lahir) {
             $umur = \Carbon\Carbon::parse($profil->tanggal_lahir)->age;
-            if ($umur >= 60) $isLansia = true;
+            if ($umur >= 60) {
+                $isLansia = true;
+            }
         }
 
-        return view('pengunjung.booking_antrian', compact('groupedLoket', 'id_loket', 'isPermanen', 'isLansia', 'isPrioritasUmum', 'profil'));
+        $isPermanen = $profil && $profil->status_prioritas === 'disetujui' && $profil->jenis_prioritas === 'disabilitas_permanen';
+        
+        // Cek apakah masa berlaku prioritas sudah kadaluarsa (khusus prioritas non-permanen & non-lansia)
+        $isExpired = false;
+        if ($profil && $profil->status_prioritas === 'disetujui' && $profil->jenis_prioritas !== 'disabilitas_permanen' && $profil->tanggal_berakhir_prioritas) {
+            $isExpired = \Carbon\Carbon::today()->gt(\Carbon\Carbon::parse($profil->tanggal_berakhir_prioritas));
+        }
+
+        // Prioritas umum aktif hanya jika disetujui DAN belum kadaluarsa
+        $isPrioritasUmum = $profil && $profil->status_prioritas === 'disetujui' && !$isExpired;
+
+        return view('pengunjung.booking_antrian', compact('groupedLoket', 'id_loket', 'isPermanen', 'isLansia', 'isPrioritasUmum', 'isExpired', 'profil'));
     }
 
     public function getKuota(Request $request)
@@ -157,7 +169,7 @@ class BookingAntrianController extends Controller
         $isPrioritas = 0;
         $jenisPrioritas = null;
 
-        $umur = Carbon::parse($profil->tanggal_lahir)->age;
+        $umur = ($profil && $profil->tanggal_lahir) ? Carbon::parse($profil->tanggal_lahir)->age : 0;
         if ($umur >= 60) {
             $isPrioritas = 1;
             $jenisPrioritas = 'lansia';
@@ -165,9 +177,13 @@ class BookingAntrianController extends Controller
             if ($profil->jenis_prioritas === 'disabilitas_permanen') {
                 $isPrioritas = 1;
                 $jenisPrioritas = 'disabilitas_permanen';
-            } elseif ($profil->tanggal_berakhir_prioritas && Carbon::today()->lte(Carbon::parse($profil->tanggal_berakhir_prioritas))) {
-                $isPrioritas = 1;
-                $jenisPrioritas = $profil->jenis_prioritas;
+            } elseif ($profil->tanggal_berakhir_prioritas) {
+                $tglExpired = Carbon::parse($profil->tanggal_berakhir_prioritas);
+                // Prioritas aktif jika belum kadaluarsa baik di hari ini maupun di tanggal kedatangan booking
+                if (Carbon::today()->lte($tglExpired) && $tanggalBooking->lte($tglExpired)) {
+                    $isPrioritas = 1;
+                    $jenisPrioritas = $profil->jenis_prioritas;
+                }
             }
         }
 

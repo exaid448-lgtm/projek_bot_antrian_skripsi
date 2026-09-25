@@ -232,25 +232,71 @@
                             <p class="text-xs text-slate-400 mt-2 font-medium"><i class="fa-solid fa-clock mr-1"></i> Batas check-in kedatangan adalah 30 menit sebelum sesi berakhir.</p>
                         </div>
 
-                        @if(isset($isPermanen) && $isPermanen || isset($isLansia) && $isLansia || isset($isPrioritasUmum) && $isPrioritasUmum)
-                            <div class="mb-6 border border-amber-200 rounded-xl p-4 bg-amber-50">
-                                <div class="flex items-center gap-3">
-                                    <i class="fa-solid fa-star text-amber-500 text-xl"></i>
-                                    <div>
-                                        <p class="font-bold text-amber-800 text-sm">Mode Prioritas Otomatis Aktif</p>
-                                        <p class="text-xs text-amber-700 mt-0.5">Sistem mendeteksi Anda sebagai pengunjung Prioritas ({{ isset($profil) && $profil->jenis_prioritas ? ucwords(str_replace('_', ' ', $profil->jenis_prioritas)) : (isset($isLansia) && $isLansia ? 'Lansia' : 'Prioritas') }}).</p>
+                        {{-- Notifikasi Status Prioritas --}}
+                        <div id="priority-alert-box">
+                            @if(isset($isLansia) && $isLansia)
+                                <div class="mb-6 border border-amber-200 rounded-xl p-4 bg-amber-50">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-solid fa-star text-amber-500 text-xl"></i>
+                                        <div>
+                                            <p class="font-bold text-amber-800 text-sm">Mode Prioritas Otomatis Aktif</p>
+                                            <p class="text-xs text-amber-700 mt-0.5">Sistem mendeteksi Anda sebagai pengunjung Prioritas (Lansia).</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @else
-                            <div class="mb-6 border border-slate-200 rounded-xl p-4 bg-slate-50 flex items-start gap-3">
-                                <i class="fa-solid fa-info-circle text-blue-500 mt-0.5 text-lg"></i>
-                                <div>
-                                    <p class="text-sm font-bold text-slate-700">Butuh Antrean Prioritas?</p>
-                                    <p class="text-xs text-slate-500 mt-1">Jika Anda Lansia, Ibu Hamil, atau Disabilitas, sistem akan otomatis memberlakukan antrean Prioritas. Pastikan Anda telah melakukan Validasi Hak Prioritas di halaman <a href="{{ route('dashboard.pengunjung') }}" class="text-blue-600 hover:underline font-bold">Profil Pengunjung</a>.</p>
+                            @elseif(isset($isPermanen) && $isPermanen)
+                                <div class="mb-6 border border-amber-200 rounded-xl p-4 bg-amber-50">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-solid fa-star text-amber-500 text-xl"></i>
+                                        <div>
+                                            <p class="font-bold text-amber-800 text-sm">Mode Prioritas Otomatis Aktif</p>
+                                            <p class="text-xs text-amber-700 mt-0.5">Sistem mendeteksi Anda sebagai pengunjung Prioritas (Disabilitas Permanen).</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
+                            @elseif(isset($isPrioritasUmum) && $isPrioritasUmum)
+                                <div id="alert-prioritas-aktif" class="mb-6 border border-amber-200 rounded-xl p-4 bg-amber-50">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-solid fa-star text-amber-500 text-xl"></i>
+                                        <div>
+                                            <p class="font-bold text-amber-800 text-sm">Mode Prioritas Otomatis Aktif</p>
+                                            <p class="text-xs text-amber-700 mt-0.5">Sistem mendeteksi Anda sebagai pengunjung Prioritas ({{ ucwords(str_replace('_', ' ', $profil->jenis_prioritas ?? '')) }}).</p>
+                                            @if($profil && $profil->tanggal_berakhir_prioritas)
+                                                <p class="text-[11px] text-amber-600 mt-1"><i class="fa-solid fa-clock mr-1"></i>Berlaku s/d: {{ \Carbon\Carbon::parse($profil->tanggal_berakhir_prioritas)->format('d M Y') }}</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="alert-prioritas-kadaluarsa-tanggal" class="mb-6 border border-red-200 rounded-xl p-4 bg-red-50 hidden">
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-triangle-exclamation text-red-500 mt-0.5 text-lg"></i>
+                                        <div>
+                                            <p class="text-sm font-bold text-red-700">Masa Berlaku Prioritas Berakhir Sebelum Tanggal Kunjungan</p>
+                                            <p class="text-xs text-red-600 mt-1">Hak prioritas Anda hanya berlaku hingga <strong>{{ \Carbon\Carbon::parse($profil->tanggal_berakhir_prioritas)->format('d M Y') }}</strong>. Karena tanggal kedatangan yang dipilih melewati tanggal tersebut, antrean ini akan didaftarkan sebagai antrean reguler.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif(isset($isExpired) && $isExpired)
+                                <div class="mb-6 border border-red-200 rounded-xl p-4 bg-red-50 flex items-start gap-3">
+                                    <i class="fa-solid fa-triangle-exclamation text-red-500 mt-0.5 text-lg"></i>
+                                    <div>
+                                        <p class="text-sm font-bold text-red-700">Masa Berlaku Hak Prioritas Telah Berakhir (Kadaluarsa)</p>
+                                        <p class="text-xs text-red-600 mt-1">Status prioritas Anda ({{ ucwords(str_replace('_', ' ', $profil->jenis_prioritas ?? '')) }}) telah berakhir pada <strong>{{ \Carbon\Carbon::parse($profil->tanggal_berakhir_prioritas)->format('d M Y') }}</strong>. Booking antrean ini akan didaftarkan sebagai antrean reguler.</p>
+                                        <a href="{{ route('profil.pengunjung') }}" class="inline-block mt-2 text-xs font-bold text-blue-600 hover:text-blue-800 underline">
+                                            <i class="fa-solid fa-upload mr-1"></i>Upload Ulang Dokumen Bukti di Profil
+                                        </a>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="mb-6 border border-slate-200 rounded-xl p-4 bg-slate-50 flex items-start gap-3">
+                                    <i class="fa-solid fa-info-circle text-blue-500 mt-0.5 text-lg"></i>
+                                    <div>
+                                        <p class="text-sm font-bold text-slate-700">Butuh Antrean Prioritas?</p>
+                                        <p class="text-xs text-slate-500 mt-1">Jika Anda Lansia, Ibu Hamil, atau Disabilitas, sistem akan otomatis memberlakukan antrean Prioritas. Pastikan Anda telah melakukan Validasi Hak Prioritas di halaman <a href="{{ route('profil.pengunjung') }}" class="text-blue-600 hover:underline font-bold">Profil Pengunjung</a>.</p>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
 
                         <div id="status-kuota-container" class="hidden mb-6">
                             <div id="loading-kuota" class="flex items-center text-blue-500 font-bold mb-2 hidden">
@@ -399,7 +445,22 @@
             // Fitur ini mungkin jarang dipakai jika melalui kiosk.
         }
 
-        $tanggal.change(checkKuota);
+        const expiryDateStr = '{{ (isset($isPrioritasUmum) && $isPrioritasUmum && $profil && $profil->tanggal_berakhir_prioritas) ? $profil->tanggal_berakhir_prioritas : "" }}';
+
+        $tanggal.change(function() {
+            checkKuota();
+
+            if (expiryDateStr) {
+                const tglVal = $tanggal.val();
+                if (tglVal && tglVal > expiryDateStr) {
+                    $('#alert-prioritas-aktif').hide();
+                    $('#alert-prioritas-kadaluarsa-tanggal').removeClass('hidden').show();
+                } else {
+                    $('#alert-prioritas-kadaluarsa-tanggal').hide();
+                    $('#alert-prioritas-aktif').show();
+                }
+            }
+        });
 
         function checkKuota() {
             const loketVal = $idLoket.val();
